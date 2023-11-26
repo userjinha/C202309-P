@@ -8,6 +8,7 @@ struct Conversation {
   char correction[100];
 };
 
+// 단어 데이터 구조체 정의
 struct Word {
   char word[50];
   char explanation[100];
@@ -78,7 +79,7 @@ void printWord(struct Word wd) {
 
             if (subChoice == 1) {
               printf(" ---인사하기--- \n");
-              printf("1) 인사말\n 2) 물어보기\n 3) 오랜만에 만날 때\n");
+              printf("1) 인사말\n 2) 이름묻기\n 3) 오랜만에 만날 때\n");
               scanf_s("%d", &choicee);
 
               if (choicee == 1) {
@@ -93,7 +94,7 @@ void printWord(struct Word wd) {
             else if (subChoice == 2) {
               printf("---물어보기---\n\n");
               printf(
-                  "1)첫 만남 무례한 질문 2)친해지기 위해서 쓰는 표현 3) "
+                  "1)첫 만남 무례한 질문\n2)친해지기 위해서 쓰는 표현\n 3) "
                   "맛이 어떤지 물어보기");
               scanf_s("%d", &choic);
 
