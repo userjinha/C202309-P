@@ -15,9 +15,9 @@ struct Word {
 };
 
 // 함수 선언
-void saveConversations(struct Conversation conversations[], int size);
-void saveWords(struct Word words[], int size);
-void printConversation(struct Conversation convo);
-void printWord(struct Word wd);
+void saveConversations(struct Conversation *conversations, int size);
+void saveWords(struct Word *words, int size);
+void printConversation(struct Conversation *convo);
+void printWord(struct Word *wd);
 
 #endif /* STUDY_ENG_H */

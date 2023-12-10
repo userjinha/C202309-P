@@ -3,21 +3,21 @@
 #include <stdio.h>
 
 // 대화 출력 함수
-void printConversation(struct Conversation convo) {
-  printf("---%s---\n", convo.situation);
-  printf("%s\n", convo.expression);
+void printConversation(struct Conversation *convo) {
+  printf("---%s---\n", convo->situation);
+  printf("%s\n", convo->expression);
   printf("----정정----\n");
-  printf("%s\n", convo.correction);
+  printf("%s\n", convo->correction);
 }
 
 // 단어 출력 함수
-void printWord(struct Word wd) {
-  printf("---%s---\n", wd.word);
-  printf("%s\n", wd.explanation);
+void printWord(struct Word *wd) {
+  printf("---%s---\n", wd->word);
+  printf("%s\n", wd->explanation);
 }
 
 // 대화 데이터를 파일에 저장하는 함수
-void saveConversations(struct Conversation conversations[], int size) {
+void saveConversations(struct Conversation *conversations, int size) {
   FILE *file;
   fopen_s(&file, "conversations.txt", "w");  // 대화 데이터를 저장할 파일명
   if (file == NULL) {
@@ -34,7 +34,7 @@ void saveConversations(struct Conversation conversations[], int size) {
 }
 
 // 단어 데이터를 파일에 저장하는 함수
-void saveWords(struct Word words[], int size) {
+void saveWords(struct Word *words, int size) {
   FILE *file;
   fopen_s(&file, "words.txt", "w");  // 단어 데이터를 저장할 파일명
   if (file == NULL) {

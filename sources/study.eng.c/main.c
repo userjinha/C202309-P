@@ -1,50 +1,67 @@
 #include <stdio.h>
-#include "study_eng.h"
+#include "study_eng.h" // 구조체 및 함수 선언이 정의된 헤더 파일
 
+// 대화 데이터 초기화 (포인터로 변경)
+struct Conversation *conversations;
 
-// 대화 데이터 초기화
-struct Conversation conversations[] = {
-    {"인사말", "hey",
-     "hey: 친해진 뒤 사용! \nhow are you: 전에 만난 적 있는 사람에게 사용!"},
-    {"이름묻기", "hi my name is jina", "hi i'm jina"},
-    {"오랜만에 만날때", "nice to meet you", "good to see you again"},
-    {"첫 만남 무례한 질문", "how old are you\nWhat's your job",
-     "정말 물어보고 싶을때->\nMay i ask you age?\n what do you do for a "
-     "living?"},
-    {"친해지기 위해  쓰는 표현", " how old are you ",
-     "what do you do in your free time"},
-    {"맛이 어떤지 물어보기", "is it delicious?", "how does it taste?"},
-    {"주문시 시간이 필요할때", " wait a minute",
-     "atually, i think we need anoter time"},
-    {"메뉴 결정을 했을때", "I decided", "I made a decision"},
-    {"서비스인지 물어보기", "it's service?", "it's on us/ it's on the house"}};
-
-// 단어 데이터 초기화
-struct Word words[] = {
-    {"가다 오다",
-     "come: 화자와 청자가 가까워질 때 사용\ngo: 반대로 멀어질 때 사용"},
-    {"패딩-padding", "puffer jacket"},
-    {"우리 동네-my neighboor", "my neighborhood"},
-    {"버스 정류장-bus station", "bus stop"},
-    {"후드티-hood-T", "hoodie"},
-    {"킥보드-kick board", "kick scooter"},
-    {"미혼- solo", "single"},
-    {"미팅-meeting", "blind date"},
-    {"요리사-cooker", "cook"},
-    {"토스트-toast", "grilled sandwich"},
-    {"화장실-toilet", " bathroom "},
-    {"아파트-apart", "apartment/building/complex"},
-    {"원룸-one room", "studio apartment"},
-    {"콘도-condo", "hotel"},
-    {"빌라-villa/mansion", "apartment"},
-    {"한시간 - a hour ", "an hour"},
-    {"이틀전에-two days before", " two days ago "},
-    {"10분 후에-after 10 minutes", "in 10 minutes"},
-    {"그냥-just", "just because"},
-    {"한국사람들-Korean people", "Koreans"}};
+// 단어 데이터 초기화 (포인터로 변경)
+struct Word *words;
 
 // main함수
 int main() {
+    // 대화와 단어 배열에 대한 메모리 동적 할당
+  conversation = malloc(sizeof(struct Conversation) * 9);
+    words = malloc(sizeof(struct Word) * 20);
+
+    // 메모리 할당이 제대로 이루어졌는지 확인
+    if (conversations == NULL || words == NULL) {
+      printf("메모리 할당에 실패했습니다.\n");
+      return 1;  // 프로그램 종료, 오류 코드 반환
+    }
+
+    // 대화 데이터 초기화
+    struct Conversation conversations[] = {
+        {"인사말", "hey",
+         "hey: 친해진 뒤 사용! \nhow are you: 전에 만난 적 있는 사람에게 "
+         "사용!"},
+        {"이름묻기", "hi my name is jina", "hi i'm jina"},
+        {"오랜만에 만날때", "nice to meet you", "good to see you again"},
+        {"첫 만남 무례한 질문", "how old are you\nWhat's your job",
+         "정말 물어보고 싶을때->\nMay i ask you age?\n what do you do for a "
+         "living?"},
+        {"친해지기 위해  쓰는 표현", " how old are you ",
+         "what do you do in your free time"},
+        {"맛이 어떤지 물어보기", "is it delicious?", "how does it taste?"},
+        {"주문시 시간이 필요할때", " wait a minute",
+         "atually, i think we need anoter time"},
+        {"메뉴 결정을 했을때", "I decided", "I made a decision"},
+        {"서비스인지 물어보기", "it's service?",
+         "it's on us/ it's on the house"}};
+
+    // 단어 데이터 초기화
+    struct Word words[] = {
+        {"가다 오다",
+         "come: 화자와 청자가 가까워질 때 사용\ngo: 반대로 멀어질 때 사용"},
+        {"패딩-padding", "puffer jacket"},
+        {"우리 동네-my neighboor", "my neighborhood"},
+        {"버스 정류장-bus station", "bus stop"},
+        {"후드티-hood-T", "hoodie"},
+        {"킥보드-kick board", "kick scooter"},
+        {"미혼- solo", "single"},
+        {"미팅-meeting", "blind date"},
+        {"요리사-cooker", "cook"},
+        {"토스트-toast", "grilled sandwich"},
+        {"화장실-toilet", " bathroom "},
+        {"아파트-apart", "apartment/building/complex"},
+        {"원룸-one room", "studio apartment"},
+        {"콘도-condo", "hotel"},
+        {"빌라-villa/mansion", "apartment"},
+        {"한시간 - a hour ", "an hour"},
+        {"이틀전에-two days before", " two days ago "},
+        {"10분 후에-after 10 minutes", "in 10 minutes"},
+        {"그냥-just", "just because"},
+        {"한국사람들-Korean people", "Koreans"}};
+
   int choice = 0;
   int choicee = 0;
   int choic = 0;
@@ -70,11 +87,11 @@ int main() {
             scanf_s("%d", &choicee);
 
             if (choicee == 1) {
-              printConversation(conversations[choicee - 1]);
+              printConversation(&conversations[choicee - 1]);
             } else if (choicee == 2) {
-              printConversation(conversations[choicee - 1]);
+              printConversation(&conversations[choicee - 1]);
             } else {
-              printConversation(conversations[choicee - 1]);
+              printConversation(&conversations[choicee - 1]);
             }
           } else if (subChoice == 2) {
             printf("---물어보기---\n\n");
@@ -84,12 +101,12 @@ int main() {
             scanf_s("%d", &choic);
 
             if (choic == 1) {
-              printConversation(conversations[4 - choic]);
+              printConversation(&conversations[4 - choic]);
             } else if (choic == 2) {
-              printConversation(conversations[6 - choic]);
+              printConversation(&conversations[6 - choic]);
 
             } else {
-              printConversation(conversations[8 - choic]);
+              printConversation(&conversations[8 - choic]);
             }
           } else if (subChoice == 3) {
             printf("---주문하기----\n\n");
@@ -99,11 +116,11 @@ int main() {
             scanf_s("%d", &cho);
 
             if (cho == 1) {
-              printConversation(conversations[7 - cho]);
+              printConversation(&conversations[7 - cho]);
             } else if (cho == 2) {
-              printConversation(conversations[9 - cho]);
+              printConversation(&conversations[9 - cho]);
             } else if (cho == 3) {
-              printConversation(conversations[11 - cho]);
+              printConversation(&conversations[11 - cho]);
             } else {
               printf("잘못된 선택입니다.");
               break;
@@ -138,7 +155,7 @@ int main() {
               scanf_s("%d", &cho);
 
               if (cho >= 1 && cho <= 10) {
-                printWord(words[cho - 1]);
+                printWord(&words[cho - 1]);
               } else {
                 printf("잘못된 선택입니다. 다시 선택하세요.\n");
               }
@@ -151,7 +168,7 @@ int main() {
               scanf_s("%d", &cho);
 
               if (cho >= 1 && cho <= 5) {
-                printWord(words[cho + 9]);  // 인덱스 10부터 건물 단어 시작
+                printWord(&words[cho + 9]);  // 인덱스 10부터 건물 단어 시작
               } else {
                 printf("잘못된 선택입니다. 다시 선택하세요.\n");
               }
@@ -165,7 +182,7 @@ int main() {
               scanf_s("%d", &cho);
 
               if (cho >= 1 && cho <= 5) {
-                printWord(words[cho + 14]);  // 인덱스 15부터 회화할 때 주의할
+                printWord(&words[cho + 14]);  // 인덱스 15부터 회화할 때 주의할
                                              // 용어 시작
               } else {
                 printf("잘못된 선택입니다. 다시 선택하세요.\n");
@@ -193,6 +210,11 @@ int main() {
   saveConversations(conversations,
                     sizeof(conversations) / sizeof(conversations[0]));
   saveWords(words, sizeof(words) / sizeof(words[0]));
+
+   // 동적으로 할당한 메모리 해제
+  free(conversations);
+  free(words);
+
 
   return 0;
 }
